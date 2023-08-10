@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Time Converter</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: 'Open Sans', sans-serif;
+            background-image: url('https://assets.ccbp.in/frontend/dynamic-webapps/time-converter-bg.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .time-input {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 24px;
+            color: #f5f7fa;
+            margin-right: 10px;
+        }
+
+        input {
+            padding: 8px;
+            font-size: 18px;
+        }
+
+        button {
+            padding: 12px 24px;
+            font-size: 18px;
+            background-color: #000000;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #f5f7fa;
+            color: #000000;
+        }
+
+        p {
+            font-size: 20px;
+            color: #f5f7fa;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="time-input">
+            <label for="hoursInput">Hours:</label>
+            <input type="number" id="hoursInput" min="0" placeholder="Enter hours">
+        </div>
+        <div class="time-input">
+            <label for="minutesInput">Minutes:</label>
+            <input type="number" id="minutesInput" min="0" placeholder="Enter minutes">
+        </div>
+        <button id="convertBtn">Convert</button>
+        <p id="errorMsg"></p>
+        <p id="timeInSeconds"></p>
+    </div>
+
+    <script>
+        document.getElementById("convertBtn").addEventListener("click", function() {
+            var hours = parseInt(document.getElementById("hoursInput").value);
+            var minutes = parseInt(document.getElementById("minutesInput").value);
+            var errorMsgElement = document.getElementById("errorMsg");
+            var timeInSecondsElement = document.getElementById("timeInSeconds");
+
+            errorMsgElement.innerHTML = "";
+
+            if (isNaN(hours) || isNaN(minutes) || hours < 0 || minutes < 0) {
+                errorMsgElement.innerHTML = "Please enter positive integers for hours and minutes.";
+                timeInSecondsElement.innerHTML = "";
+            } else {
+                var timeInSeconds = hours * 3600 + minutes * 60;
+                timeInSecondsElement.innerHTML = "Time in seconds: " + timeInSeconds;
+            }
+        });
+    </script>
+</body>
+
+</html>
